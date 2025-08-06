@@ -57,7 +57,7 @@
       margin-bottom: 1rem;
     }
 
-    /* Centered alternating timeline */
+    /* Timeline */
     .timeline {
       position: relative;
       max-width: 800px;
@@ -107,11 +107,11 @@
     }
 
     .timeline-item.left::before {
-      right: -10px;
+      right: -12px;
     }
 
     .timeline-item.right::before {
-      left: -10px;
+      left: -12px;
     }
 
     .timeline-item strong {
@@ -173,7 +173,6 @@
     <!-- Home Content -->
     <div id="homeContent">
       <h1>Joshua Cole</h1>
-
       <h2>Timeline</h2>
       <div class="timeline">
         <div class="timeline-item left">
@@ -209,9 +208,7 @@
     <div class="viz-container" id="vizContainer">
       <div class='tableauPlaceholder' id='viz1754501314239' style='position: relative'>
         <noscript>
-          <a href='#'>
-            <img alt='Home ' src='https://public.tableau.com/static/images/JE/JEET/Home/1_rss.png' style='border: none' />
-          </a>
+          <a href='#'><img alt='Home ' src='https://public.tableau.com/static/images/JE/JEET/Home/1_rss.png' style='border: none' /></a>
         </noscript>
         <object class='tableauViz'>
           <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
@@ -230,24 +227,21 @@
         </object>
       </div>
     </div>
-  </div>
 
-      <!-- Affordable Housing Visualization -->
+    <!-- Maine Housing Visualization -->
     <div class="viz-container" id="vizContainer2">
       <div class='tableauPlaceholder' id='viz1754505100987' style='position: relative'>
         <noscript>
-          <a href='#'>
-            <img alt='Horizontal ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ho&#47;HousingNeedinMaine&#47;Horizontal&#47;1_rss.png' style='border: none' />
-          </a>
+          <a href='#'><img alt='Horizontal ' src='https://public.tableau.com/static/images/Ho/HousingNeedinMaine/Horizontal/1_rss.png' style='border: none' /></a>
         </noscript>
-        <object class='tableauViz'  style='display:none;'>
+        <object class='tableauViz'>
           <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
           <param name='embed_code_version' value='3' />
           <param name='site_root' value='' />
-          <param name='name' value='HousingNeedinMaine&#47;Horizontal' />
+          <param name='name' value='HousingNeedinMaine/Horizontal' />
           <param name='tabs' value='no' />
           <param name='toolbar' value='yes' />
-          <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ho&#47;HousingNeedinMaine&#47;Horizontal&#47;1.png' />
+          <param name='static_image' value='https://public.tableau.com/static/images/Ho/HousingNeedinMaine/Horizontal/1.png' />
           <param name='animate_transition' value='yes' />
           <param name='display_static_image' value='yes' />
           <param name='display_spinner' value='yes' />
@@ -258,76 +252,61 @@
       </div>
     </div>
   </div>
-  
- <script type='text/javascript'>
-  const homeContent = document.getElementById('homeContent');
-  const vizContainer = document.getElementById('vizContainer');
-  const vizContainer2 = document.getElementById('vizContainer2');
 
-  const homeButton = document.getElementById('showHome');
-  const vizButton = document.getElementById('showViz');
-  const vizButton2 = document.getElementById('showViz2');
+  <!-- JS for interactivity -->
+  <script type='text/javascript'>
+    const homeContent = document.getElementById('homeContent');
+    const vizContainer = document.getElementById('vizContainer');
+    const vizContainer2 = document.getElementById('vizContainer2');
 
-  function setActiveButton(activeButton) {
-    [homeButton, vizButton, vizButton2].forEach(btn => btn.classList.remove('active'));
-    activeButton.classList.add('active');
-  }
+    const homeButton = document.getElementById('showHome');
+    const vizButton = document.getElementById('showViz');
+    const vizButton2 = document.getElementById('showViz2');
 
-  homeButton.addEventListener('click', () => {
-    homeContent.style.display = 'block';
-    vizContainer.style.display = 'none';
-    vizContainer2.style.display = 'none';
-    setActiveButton(homeButton);
-  });
-
-  vizButton.addEventListener('click', () => {
-    homeContent.style.display = 'none';
-    vizContainer.style.display = 'block';
-    vizContainer2.style.display = 'none';
-    setActiveButton(vizButton);
-
-    const divElement = document.getElementById('viz1754501314239');
-    if (!divElement.getAttribute('data-loaded')) {
-      const vizElement = divElement.getElementsByTagName('object')[0];
-      vizElement.style.width = "100%";
-      vizElement.style.height = "1127px";
-      const scriptElement = document.createElement('script');
-      scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-      vizElement.parentNode.insertBefore(scriptElement, vizElement);
-      divElement.setAttribute('data-loaded', 'true');
+    function setActiveButton(activeButton) {
+      [homeButton, vizButton, vizButton2].forEach(btn => btn.classList.remove('active'));
+      activeButton.classList.add('active');
     }
-  });
 
-  vizButton2.addEventListener('click', () => {
-    homeContent.style.display = 'none';
-    vizContainer.style.display = 'none';
-    vizContainer2.style.display = 'block';
-    setActiveButton(vizButton2);
+    homeButton.addEventListener('click', () => {
+      homeContent.style.display = 'block';
+      vizContainer.style.display = 'none';
+      vizContainer2.style.display = 'none';
+      setActiveButton(homeButton);
+    });
 
-    const divElement = document.getElementById('viz1754505100987');
-    if (!divElement.getAttribute('data-loaded')) {
-      const vizElement = divElement.getElementsByTagName('object')[0];
+    vizButton.addEventListener('click', () => {
+      homeContent.style.display = 'none';
+      vizContainer.style.display = 'block';
+      vizContainer2.style.display = 'none';
+      setActiveButton(vizButton);
 
-      if (divElement.offsetWidth > 800) {
-        vizElement.style.width = '3196px';
-        vizElement.style.height = '627px';
-      } else if (divElement.offsetWidth > 500) {
-        vizElement.style.width = '3196px';
-        vizElement.style.height = '627px';
-      } else {
-        vizElement.style.width = '100%';
-        vizElement.style.height = '8777px';
+      const divElement = document.getElementById('viz1754501314239');
+      if (!divElement.getAttribute('data-loaded')) {
+        const vizElement = divElement.getElementsByTagName('object')[0];
+        const scriptElement = document.createElement('script');
+        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+        vizElement.parentNode.insertBefore(scriptElement, vizElement);
+        divElement.setAttribute('data-loaded', 'true');
       }
+    });
 
-      const scriptElement = document.createElement('script');
-      scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-      vizElement.parentNode.insertBefore(scriptElement, vizElement);
+    vizButton2.addEventListener('click', () => {
+      homeContent.style.display = 'none';
+      vizContainer.style.display = 'none';
+      vizContainer2.style.display = 'block';
+      setActiveButton(vizButton2);
 
-      divElement.setAttribute('data-loaded', 'true');
-    }
-  });
-</script>
-
+      const divElement = document.getElementById('viz1754505100987');
+      if (!divElement.getAttribute('data-loaded')) {
+        const vizElement = divElement.getElementsByTagName('object')[0];
+        const scriptElement = document.createElement('script');
+        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+        vizElement.parentNode.insertBefore(scriptElement, vizElement);
+        divElement.setAttribute('data-loaded', 'true');
+      }
+    });
+  </script>
 
 </body>
 </html>

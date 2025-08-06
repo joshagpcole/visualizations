@@ -9,33 +9,32 @@
       padding: 2rem;
       background-color: #f9f9f9;
       margin: 0;
-    }
-
-    h1 {
       text-align: center;
     }
 
+    h1 {
+      margin-bottom: 2rem;
+    }
+
     .viz-container {
-      display: flex;
-      justify-content: center;
-      padding: 1rem;
+      width: 960px;
+      margin: 0 auto; /* center horizontally */
     }
 
     .tableauPlaceholder {
       width: 100%;
-      max-width: 1200px;
     }
 
     .tableauViz {
       width: 100% !important;
-      height: 80vh !important; /* Responsive height based on viewport */
+      height: 1127px !important; /* set to match original */
       display: block;
     }
   </style>
 </head>
 <body>
 
-  <h1>Joshua Cole's Portfolio</h1>
+  <h1>Interactive Tableau Dashboard</h1>
 
   <div class="viz-container">
     <div class='tableauPlaceholder' id='viz1754501314239' style='position: relative'>
@@ -66,9 +65,9 @@
     const divElement = document.getElementById('viz1754501314239');
     const vizElement = divElement.getElementsByTagName('object')[0];
 
-    // Make the viz responsive by using 100% width and relative height (set in CSS)
+    // Force fixed size to match 960px width container
     vizElement.style.width = "100%";
-    vizElement.style.height = "80vh"; // 80% of the viewport height
+    vizElement.style.height = "1127px";
 
     const scriptElement = document.createElement('script');
     scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';

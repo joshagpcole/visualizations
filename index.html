@@ -7,14 +7,29 @@
     body {
       font-family: sans-serif;
       padding: 2rem;
-      text-align: center;
       background-color: #f9f9f9;
+      margin: 0;
     }
+
+    h1 {
+      text-align: center;
+    }
+
     .viz-container {
       display: flex;
       justify-content: center;
-      align-items: center;
-      margin-top: 2rem;
+      padding: 1rem;
+    }
+
+    .tableauPlaceholder {
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .tableauViz {
+      width: 100% !important;
+      height: 80vh !important; /* Responsive height based on viewport */
+      display: block;
     }
   </style>
 </head>
@@ -22,7 +37,6 @@
 
   <h1>Joshua Cole's Portfolio</h1>
 
-  <!-- Centered Tableau Embed Code -->
   <div class="viz-container">
     <div class='tableauPlaceholder' id='viz1754501314239' style='position: relative'>
       <noscript>
@@ -30,7 +44,7 @@
           <img alt='Home ' src='https://public.tableau.com/static/images/JE/JEET/Home/1_rss.png' style='border: none' />
         </a>
       </noscript>
-      <object class='tableauViz' style='display:none;'>
+      <object class='tableauViz'>
         <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
         <param name='embed_code_version' value='3' />
         <param name='site_root' value='' />
@@ -49,19 +63,14 @@
   </div>
 
   <script type='text/javascript'>
-    var divElement = document.getElementById('viz1754501314239');
-    var vizElement = divElement.getElementsByTagName('object')[0];
-    if (divElement.offsetWidth > 800) {
-      vizElement.style.width = '960px';
-      vizElement.style.height = '1127px';
-    } else if (divElement.offsetWidth > 500) {
-      vizElement.style.width = '960px';
-      vizElement.style.height = '1127px';
-    } else {
-      vizElement.style.width = '100%';
-      vizElement.style.height = '1777px';
-    }
-    var scriptElement = document.createElement('script');
+    const divElement = document.getElementById('viz1754501314239');
+    const vizElement = divElement.getElementsByTagName('object')[0];
+
+    // Make the viz responsive by using 100% width and relative height (set in CSS)
+    vizElement.style.width = "100%";
+    vizElement.style.height = "80vh"; // 80% of the viewport height
+
+    const scriptElement = document.createElement('script');
     scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
     vizElement.parentNode.insertBefore(scriptElement, vizElement);
   </script>

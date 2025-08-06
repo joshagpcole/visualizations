@@ -7,46 +7,106 @@
     body {
       font-family: sans-serif;
       margin: 0;
-      padding: 2rem;
+      padding: 0;
       background-color: #f9f9f9;
-      text-align: center;
+      display: flex;
+      height: 100vh;
+    }
+
+    /* Sidebar with buttons */
+    .sidebar {
+      width: 200px;
+      background-color: #2c3e50;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 2rem 1rem;
+      box-sizing: border-box;
+    }
+
+    .sidebar button {
+      background: none;
+      border: none;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      text-align: left;
+      width: 100%;
+      cursor: pointer;
+      border-left: 4px solid transparent;
+      transition: all 0.3s;
+    }
+
+    .sidebar button.active {
+      background-color: #34495e;
+      border-left: 4px solid #e74c3c;
+      font-weight: bold;
+    }
+
+    /* Main content */
+    .content {
+      flex: 1;
+      padding: 2rem;
+      overflow-y: auto;
     }
 
     h1, h2 {
       margin-bottom: 1rem;
+      text-align: center;
     }
 
+    /* Vertical timeline */
     .timeline {
-      max-width: 800px;
+      position: relative;
+      max-width: 600px;
       margin: 2rem auto;
-      text-align: left;
+      padding-left: 40px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background-color: #e74c3c;
     }
 
     .timeline-item {
-      margin-bottom: 1.5rem;
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -11px;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      background-color: #e74c3c;
+      border-radius: 50%;
+      border: 4px solid #fff;
+    }
+
+    .timeline-item strong {
+      display: block;
+      margin-bottom: 0.3rem;
+      font-size: 1.1rem;
     }
 
     .skills {
-      max-width: 800px;
+      max-width: 600px;
       margin: 2rem auto;
-      text-align: left;
-    }
-
-    .button-container {
-      margin: 2rem 0;
-    }
-
-    button {
-      padding: 0.5rem 1.5rem;
-      margin: 0 1rem;
-      font-size: 1rem;
-      cursor: pointer;
     }
 
     .viz-container {
       width: 960px;
       margin: 0 auto;
-      display: none; /* hidden by default */
+      display: none;
     }
 
     .tableauPlaceholder {
@@ -62,81 +122,93 @@
 </head>
 <body>
 
-  <h1>Joshua Cole - Data Portfolio</h1>
-
-  <div class="button-container">
-    <button id="showHome">Home</button>
-    <button id="showViz">View Tableau Dashboard</button>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <button id="showHome" class="active">Home</button>
+    <button id="showViz">Tableau Dashboard</button>
   </div>
 
-  <!-- Home Content -->
-  <div id="homeContent">
-    <h2>Timeline</h2>
-    <div class="timeline">
-      <div class="timeline-item">
-        <strong>2025 - Present:</strong> Senior Data Scientist at Instacart
+  <!-- Main content -->
+  <div class="content">
+    <!-- Home Content -->
+    <div id="homeContent">
+      <h1>Joshua Cole - Data Portfolio</h1>
+
+      <h2>Timeline</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <strong>2025 - Present:</strong> Senior Data Scientist at Instacart
+        </div>
+        <div class="timeline-item">
+          <strong>2023 - 2025:</strong> Lead Analytics Engineer at Lovevery
+        </div>
+        <div class="timeline-item">
+          <strong>2021 - 2023:</strong> Data Engineer at Company X
+        </div>
+        <div class="timeline-item">
+          <strong>2019 - 2021:</strong> Data Analyst at Company Y
+        </div>
       </div>
-      <div class="timeline-item">
-        <strong>2023 - 2025:</strong> Lead Analytics Engineer at Lovevery
-      </div>
-      <div class="timeline-item">
-        <strong>2021 - 2023:</strong> Data Engineer at Company X
-      </div>
-      <div class="timeline-item">
-        <strong>2019 - 2021:</strong> Data Analyst at Company Y
+
+      <h2>Skills Synopsis</h2>
+      <div class="skills">
+        <ul>
+          <li>Advanced SQL, Python, and R for analytics and data engineering</li>
+          <li>BI tools: Tableau, PowerBI, Looker, and Sisense</li>
+          <li>Cloud experience: AWS, Azure, Snowflake, Redshift</li>
+          <li>Data modeling, ETL pipelines, and self-serve analytics</li>
+        </ul>
       </div>
     </div>
 
-    <h2>Skills Synopsis</h2>
-    <div class="skills">
-      <ul>
-        <li>Advanced SQL, Python, and R for analytics and data engineering</li>
-        <li>BI tools: Tableau, PowerBI, Looker, and Sisense</li>
-        <li>Cloud experience: AWS, Azure, Snowflake, Redshift</li>
-        <li>Data modeling, ETL pipelines, and self-serve analytics</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Tableau Visualization -->
-  <div class="viz-container" id="vizContainer">
-    <div class='tableauPlaceholder' id='viz1754501314239' style='position: relative'>
-      <noscript>
-        <a href='#'>
-          <img alt='Home ' src='https://public.tableau.com/static/images/JE/JEET/Home/1_rss.png' style='border: none' />
-        </a>
-      </noscript>
-      <object class='tableauViz'>
-        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-        <param name='embed_code_version' value='3' />
-        <param name='site_root' value='' />
-        <param name='name' value='JEET/Home' />
-        <param name='tabs' value='no' />
-        <param name='toolbar' value='yes' />
-        <param name='static_image' value='https://public.tableau.com/static/images/JE/JEET/Home/1.png' />
-        <param name='animate_transition' value='yes' />
-        <param name='display_static_image' value='yes' />
-        <param name='display_spinner' value='yes' />
-        <param name='display_overlay' value='yes' />
-        <param name='display_count' value='yes' />
-        <param name='language' value='en-US' />
-      </object>
+    <!-- Tableau Visualization -->
+    <div class="viz-container" id="vizContainer">
+      <div class='tableauPlaceholder' id='viz1754501314239' style='position: relative'>
+        <noscript>
+          <a href='#'>
+            <img alt='Home ' src='https://public.tableau.com/static/images/JE/JEET/Home/1_rss.png' style='border: none' />
+          </a>
+        </noscript>
+        <object class='tableauViz'>
+          <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+          <param name='embed_code_version' value='3' />
+          <param name='site_root' value='' />
+          <param name='name' value='JEET/Home' />
+          <param name='tabs' value='no' />
+          <param name='toolbar' value='yes' />
+          <param name='static_image' value='https://public.tableau.com/static/images/JE/JEET/Home/1.png' />
+          <param name='animate_transition' value='yes' />
+          <param name='display_static_image' value='yes' />
+          <param name='display_spinner' value='yes' />
+          <param name='display_overlay' value='yes' />
+          <param name='display_count' value='yes' />
+          <param name='language' value='en-US' />
+        </object>
+      </div>
     </div>
   </div>
 
   <script type='text/javascript'>
     const homeContent = document.getElementById('homeContent');
     const vizContainer = document.getElementById('vizContainer');
+    const homeButton = document.getElementById('showHome');
+    const vizButton = document.getElementById('showViz');
 
-    // Buttons
-    document.getElementById('showHome').addEventListener('click', () => {
+    function setActiveButton(activeButton) {
+      [homeButton, vizButton].forEach(btn => btn.classList.remove('active'));
+      activeButton.classList.add('active');
+    }
+
+    homeButton.addEventListener('click', () => {
       homeContent.style.display = 'block';
       vizContainer.style.display = 'none';
+      setActiveButton(homeButton);
     });
 
-    document.getElementById('showViz').addEventListener('click', () => {
+    vizButton.addEventListener('click', () => {
       homeContent.style.display = 'none';
       vizContainer.style.display = 'block';
+      setActiveButton(vizButton);
 
       // Load Tableau Viz if not already loaded
       const divElement = document.getElementById('viz1754501314239');

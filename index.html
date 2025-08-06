@@ -2,23 +2,51 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Embedded Tableau Dashboard</title>
+  <title>Joshua Cole - Portfolio</title>
   <style>
     body {
       font-family: sans-serif;
+      margin: 0;
       padding: 2rem;
       background-color: #f9f9f9;
-      margin: 0;
       text-align: center;
     }
 
-    h1 {
-      margin-bottom: 2rem;
+    h1, h2 {
+      margin-bottom: 1rem;
+    }
+
+    .timeline {
+      max-width: 800px;
+      margin: 2rem auto;
+      text-align: left;
+    }
+
+    .timeline-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .skills {
+      max-width: 800px;
+      margin: 2rem auto;
+      text-align: left;
+    }
+
+    .button-container {
+      margin: 2rem 0;
+    }
+
+    button {
+      padding: 0.5rem 1.5rem;
+      margin: 0 1rem;
+      font-size: 1rem;
+      cursor: pointer;
     }
 
     .viz-container {
       width: 960px;
-      margin: 0 auto; /* center horizontally */
+      margin: 0 auto;
+      display: none; /* hidden by default */
     }
 
     .tableauPlaceholder {
@@ -27,16 +55,51 @@
 
     .tableauViz {
       width: 100% !important;
-      height: 1127px !important; /* set to match original */
+      height: 1127px !important;
       display: block;
     }
   </style>
 </head>
 <body>
 
-  <h1>Interactive Tableau Dashboard</h1>
+  <h1>Joshua Cole - Data Portfolio</h1>
 
-  <div class="viz-container">
+  <div class="button-container">
+    <button id="showHome">Home</button>
+    <button id="showViz">View Tableau Dashboard</button>
+  </div>
+
+  <!-- Home Content -->
+  <div id="homeContent">
+    <h2>Timeline</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <strong>2025 - Present:</strong> Senior Data Scientist at Instacart
+      </div>
+      <div class="timeline-item">
+        <strong>2023 - 2025:</strong> Lead Analytics Engineer at Lovevery
+      </div>
+      <div class="timeline-item">
+        <strong>2021 - 2023:</strong> Data Engineer at Company X
+      </div>
+      <div class="timeline-item">
+        <strong>2019 - 2021:</strong> Data Analyst at Company Y
+      </div>
+    </div>
+
+    <h2>Skills Synopsis</h2>
+    <div class="skills">
+      <ul>
+        <li>Advanced SQL, Python, and R for analytics and data engineering</li>
+        <li>BI tools: Tableau, PowerBI, Looker, and Sisense</li>
+        <li>Cloud experience: AWS, Azure, Snowflake, Redshift</li>
+        <li>Data modeling, ETL pipelines, and self-serve analytics</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Tableau Visualization -->
+  <div class="viz-container" id="vizContainer">
     <div class='tableauPlaceholder' id='viz1754501314239' style='position: relative'>
       <noscript>
         <a href='#'>
@@ -62,16 +125,33 @@
   </div>
 
   <script type='text/javascript'>
-    const divElement = document.getElementById('viz1754501314239');
-    const vizElement = divElement.getElementsByTagName('object')[0];
+    const homeContent = document.getElementById('homeContent');
+    const vizContainer = document.getElementById('vizContainer');
 
-    // Force fixed size to match 960px width container
-    vizElement.style.width = "100%";
-    vizElement.style.height = "1127px";
+    // Buttons
+    document.getElementById('showHome').addEventListener('click', () => {
+      homeContent.style.display = 'block';
+      vizContainer.style.display = 'none';
+    });
 
-    const scriptElement = document.createElement('script');
-    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-    vizElement.parentNode.insertBefore(scriptElement, vizElement);
+    document.getElementById('showViz').addEventListener('click', () => {
+      homeContent.style.display = 'none';
+      vizContainer.style.display = 'block';
+
+      // Load Tableau Viz if not already loaded
+      const divElement = document.getElementById('viz1754501314239');
+      if (!divElement.getAttribute('data-loaded')) {
+        const vizElement = divElement.getElementsByTagName('object')[0];
+        vizElement.style.width = "100%";
+        vizElement.style.height = "1127px";
+
+        const scriptElement = document.createElement('script');
+        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+        vizElement.parentNode.insertBefore(scriptElement, vizElement);
+
+        divElement.setAttribute('data-loaded', 'true');
+      }
+    });
   </script>
 
 </body>

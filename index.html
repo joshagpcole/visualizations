@@ -165,6 +165,7 @@
   <div class="sidebar">
     <button id="showHome" class="active">Home</button>
     <button id="showViz">JEET</button>
+    <button id="showViz2">Maine Housing Need</button>
   </div>
 
   <!-- Main content -->
@@ -194,7 +195,7 @@
 
       <div class="skills">
         <ul>
-          Senior Analytics Engineer and Data Scientist with 10+ years of experience building scalable data models, 
+          Senior Analytics Engineer and Data Architect with 10+ years of experience building scalable data models, 
           developing modular dbt pipelines, and enabling cross-functional decision-making in healthcare and operational 
           domains. Expert in SQL, Redshift, and DBT  with a strong focus on self-serve enablement, data quality, and 
           AI-enhanced workflows. Proven track record in defining transformation strategy, leading data architecture, and 
@@ -204,7 +205,7 @@
       </div>
     </div>
 
-    <!-- Tableau Visualization -->
+    <!-- JEET Visualization -->
     <div class="viz-container" id="vizContainer">
       <div class='tableauPlaceholder' id='viz1754501314239' style='position: relative'>
         <noscript>
@@ -231,43 +232,102 @@
     </div>
   </div>
 
-  <script type='text/javascript'>
-    const homeContent = document.getElementById('homeContent');
-    const vizContainer = document.getElementById('vizContainer');
-    const homeButton = document.getElementById('showHome');
-    const vizButton = document.getElementById('showViz');
+      <!-- Affordable Housing Visualization -->
+    <div class="viz-container" id="vizContainer">
+      <div class='tableauPlaceholder' id='viz1754505100987' style='position: relative'>
+        <noscript>
+          <a href='#'>
+            <img alt='Horizontal ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ho&#47;HousingNeedinMaine&#47;Horizontal&#47;1_rss.png' style='border: none' />
+          </a>
+        </noscript>
+        <object class='tableauViz'  style='display:none;'>
+          <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+          <param name='embed_code_version' value='3' />
+          <param name='site_root' value='' />
+          <param name='name' value='HousingNeedinMaine&#47;Horizontal' />
+          <param name='tabs' value='no' />
+          <param name='toolbar' value='yes' />
+          <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ho&#47;HousingNeedinMaine&#47;Horizontal&#47;1.png' />
+          <param name='animate_transition' value='yes' />
+          <param name='display_static_image' value='yes' />
+          <param name='display_spinner' value='yes' />
+          <param name='display_overlay' value='yes' />
+          <param name='display_count' value='yes' />
+          <param name='language' value='en-US' />
+        </object>
+      </div>
+    </div>
+  </div>
+  
+ <script type='text/javascript'>
+  const homeContent = document.getElementById('homeContent');
+  const vizContainer = document.getElementById('vizContainer');
+  const vizContainer2 = document.getElementById('vizContainer2');
 
-    function setActiveButton(activeButton) {
-      [homeButton, vizButton].forEach(btn => btn.classList.remove('active'));
-      activeButton.classList.add('active');
+  const homeButton = document.getElementById('showHome');
+  const vizButton = document.getElementById('showViz');
+  const vizButton2 = document.getElementById('showViz2');
+
+  function setActiveButton(activeButton) {
+    [homeButton, vizButton, vizButton2].forEach(btn => btn.classList.remove('active'));
+    activeButton.classList.add('active');
+  }
+
+  homeButton.addEventListener('click', () => {
+    homeContent.style.display = 'block';
+    vizContainer.style.display = 'none';
+    vizContainer2.style.display = 'none';
+    setActiveButton(homeButton);
+  });
+
+  vizButton.addEventListener('click', () => {
+    homeContent.style.display = 'none';
+    vizContainer.style.display = 'block';
+    vizContainer2.style.display = 'none';
+    setActiveButton(vizButton);
+
+    const divElement = document.getElementById('viz1754501314239');
+    if (!divElement.getAttribute('data-loaded')) {
+      const vizElement = divElement.getElementsByTagName('object')[0];
+      vizElement.style.width = "100%";
+      vizElement.style.height = "1127px";
+      const scriptElement = document.createElement('script');
+      scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+      vizElement.parentNode.insertBefore(scriptElement, vizElement);
+      divElement.setAttribute('data-loaded', 'true');
     }
+  });
 
-    homeButton.addEventListener('click', () => {
-      homeContent.style.display = 'block';
-      vizContainer.style.display = 'none';
-      setActiveButton(homeButton);
-    });
+  vizButton2.addEventListener('click', () => {
+    homeContent.style.display = 'none';
+    vizContainer.style.display = 'none';
+    vizContainer2.style.display = 'block';
+    setActiveButton(vizButton2);
 
-    vizButton.addEventListener('click', () => {
-      homeContent.style.display = 'none';
-      vizContainer.style.display = 'block';
-      setActiveButton(vizButton);
+    const divElement = document.getElementById('viz1754505100987');
+    if (!divElement.getAttribute('data-loaded')) {
+      const vizElement = divElement.getElementsByTagName('object')[0];
 
-      // Load Tableau Viz if not already loaded
-      const divElement = document.getElementById('viz1754501314239');
-      if (!divElement.getAttribute('data-loaded')) {
-        const vizElement = divElement.getElementsByTagName('object')[0];
-        vizElement.style.width = "100%";
-        vizElement.style.height = "1127px";
-
-        const scriptElement = document.createElement('script');
-        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-        vizElement.parentNode.insertBefore(scriptElement, vizElement);
-
-        divElement.setAttribute('data-loaded', 'true');
+      if (divElement.offsetWidth > 800) {
+        vizElement.style.width = '3196px';
+        vizElement.style.height = '627px';
+      } else if (divElement.offsetWidth > 500) {
+        vizElement.style.width = '3196px';
+        vizElement.style.height = '627px';
+      } else {
+        vizElement.style.width = '100%';
+        vizElement.style.height = '8777px';
       }
-    });
-  </script>
+
+      const scriptElement = document.createElement('script');
+      scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+      vizElement.parentNode.insertBefore(scriptElement, vizElement);
+
+      divElement.setAttribute('data-loaded', 'true');
+    }
+  });
+</script>
+
 
 </body>
 </html>
